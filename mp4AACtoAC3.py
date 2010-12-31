@@ -65,19 +65,23 @@ def main(options):
             log.info('os.system(%s)' % statement)
             os.system(statement)
         
+        AACFileNames = []
+        
         #May want to add support
         for fileName in os.listdir('.'):
             if '.aac' in fileName:
-                AACFileName = fileName
+                log.info('Adding AAC file, %s, to list for conversion.' % fileName)
+                AACFileName.append(fileName)
             elif '.mp4' in fileName:
                 MP4FileName = fileName
             elif '.h264' in fileName:
                 h264FileName = fileName
         
-        log.info('Convert AAC to multichannel WAV...')
-        statement = 'faad "%s"' % AACFileName
-        log.info(statement)
-        os.system(statement)
+        log.info('Convert AAC(s) to multichannel WAV...')
+        for file in AACFileNames
+            statement = 'faad "%s"' % file
+            log.info(statement)
+            os.system(statement)
         
         waveFileName = AACFileName.split('.aac')[0] + '.wav'
         AC3FileName = AACFileName.split('.aac')[0] + '.ac3'
